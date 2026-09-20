@@ -1,0 +1,18 @@
+# 构建中间产物与运行产物（源码仓库里不需要提交）
+dist/
+_tmp/
+_research/
+ui-shots-installed/
+*.bak
+*.bad-*
+*.exit
+*.user
+*.suo
+.vs/
+.idea/
+Thumbs.db
+desktop.ini
+
+# 桌面快捷方式、安装日志
+*.lnk
+AzurLaneDeskPet-setup.log

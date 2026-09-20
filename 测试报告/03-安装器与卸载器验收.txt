@@ -1,0 +1,91 @@
+
+=== T1 产物 ===
+[PASS] T1 两个 exe 存在 :: setup=True uninstaller=True
+
+=== T3 dry-run（不得写盘） ===
+[PASS] T3 dry-run 退出码 0 且未创建目录 :: exit=0 dirExists=False report=True
+[PASS] T3 dry-run 报告含 RESULT=OK(dry-run) :: report 内容校验
+
+=== T2 静默安装 ===
+[PASS] T2 静默安装退出码 0 :: exit=0
+[PASS] T2 主程序存在 :: %TEMP%\alp-test\AzurLaneDeskPet.exe
+[PASS] T2 install.json 存在 :: %TEMP%\alp-test\install.json
+[PASS] T2 卸载器在负载内 :: %TEMP%\alp-test\卸载-灵工桌宠.exe
+[PASS] T2 使用说明.txt 在负载内 :: %TEMP%\alp-test\使用说明.txt
+[PASS] T2 assets 目录在负载内 :: %TEMP%\alp-test\assets
+[PASS] T2 install.json 字段齐全 :: missing=
+[PASS] T2 报告含 exit=0 :: report 内容校验
+[PASS] T2 报告中文未乱码 :: UTF-8 读取校验
+[PASS] T2 注册表卸载项正确 :: HKCU Uninstall\AzurLaneDeskPet
+[PASS] T2 DisplayName 中文正确 :: DisplayName=灵工桌宠
+[PASS] T2 UninstallString 指向卸载器 :: UninstallString="%TEMP%\alp-test\卸载-灵工桌宠.exe"
+
+=== 准备用户数据与快捷方式（验证卸载清理） ===
+  快捷方式：True / True
+  已把 install.json 的 dataDir 改成自定义目录（含 AzurLane）
+
+=== T4 静默卸载 ===
+[PASS] T4 卸载退出码 0 :: exit=0
+[PASS] T4 安装目录已删除 :: %TEMP%\alp-test
+[PASS] T4 默认数据目录已删除 :: %TEMP%\alp-sandbox-data
+[PASS] T4 自定义 dataDir 的非产品文件被保留（安全策略） :: %TEMP%\alp-custom-azurlane-data
+[PASS] T4 自定义 dataDir 仍在（因含保留文件） :: %TEMP%\alp-custom-azurlane-data
+[PASS] T4 报告列出数据目录中保留的文件 :: 保留清单
+[PASS] T4 开始菜单快捷方式已删除 :: C:\Users\<用户>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\灵工桌宠.lnk
+[PASS] T4 桌面快捷方式已删除 :: C:\Users\<用户>\Desktop\灵工桌宠.lnk
+[PASS] T4 注册表卸载项已删除 :: HKCU Uninstall\AzurLaneDeskPet
+[PASS] T4 产品注册表键已删除 :: HKCU\Software\AzurLaneDeskPet
+[PASS] T4 无危险目录误删 :: %TEMP%\alp-danger
+[PASS] T4 报告含 exit=0 :: report 内容校验
+[PASS] T4 报告中文未乱码 :: UTF-8 读取校验
+[PASS] T4 报告含统计信息 :: report 统计段
+[PASS] T4 卸载器临时副本已自删 :: 剩余 0 个临时副本
+
+=== T5 GUI 启动 3 秒后强杀 ===
+[PASS] T5 安装器 GUI 可启动且可被强杀 :: 3 秒时仍在运行=True，已杀死=True
+
+=== T6 用户真实数据目录未被触碰 ===
+[PASS] T6 用户真实数据目录（%APPDATA%\AzurLaneDeskPet）文件数未变 :: 测试前 118 个 → 测试后 118 个（-1 表示目录不存在）
+
+=== 清理测试痕迹 ===
+  已清理临时目录/报告（残留 payload 目录 0 个）
+
+================ 汇总 ================
+
+Test                                          OK Detail                                                                
+----                                          -- ------                                                                
+T1 两个 exe 存在                                True setup=True uninstaller=True                                           
+T3 dry-run 退出码 0 且未创建目录                     True exit=0 dirExists=False report=True                                    
+T3 dry-run 报告含 RESULT=OK(dry-run)           True report 内容校验                                                           
+T2 静默安装退出码 0                                True exit=0                                                                
+T2 主程序存在                                    True %TEMP%\alp-test\AzurLaneDeskPet.exe        
+T2 install.json 存在                          True %TEMP%\alp-test\install.json               
+T2 卸载器在负载内                                  True %TEMP%\alp-test\卸载-灵工桌宠.exe                
+T2 使用说明.txt 在负载内                            True %TEMP%\alp-test\使用说明.txt                   
+T2 assets 目录在负载内                            True %TEMP%\alp-test\assets                     
+T2 install.json 字段齐全                        True missing=                                                              
+T2 报告含 exit=0                               True report 内容校验                                                           
+T2 报告中文未乱码                                  True UTF-8 读取校验                                                            
+T2 注册表卸载项正确                                 True HKCU Uninstall\AzurLaneDeskPet                                        
+T2 DisplayName 中文正确                         True DisplayName=灵工桌宠                                                      
+T2 UninstallString 指向卸载器                    True UninstallString="%TEMP%\alp-test\卸载-灵工桌宠...
+T4 卸载退出码 0                                  True exit=0                                                                
+T4 安装目录已删除                                  True %TEMP%\alp-test                            
+T4 默认数据目录已删除                                True %TEMP%\alp-sandbox-data                    
+T4 自定义 dataDir 的非产品文件被保留（安全策略）              True %TEMP%\alp-custom-azurlane-data            
+T4 自定义 dataDir 仍在（因含保留文件）                   True %TEMP%\alp-custom-azurlane-data            
+T4 报告列出数据目录中保留的文件                           True 保留清单                                                                  
+T4 开始菜单快捷方式已删除                              True C:\Users\<用户>\AppData\Roaming\Microsoft\Windows\Start Menu\Program...
+T4 桌面快捷方式已删除                                True C:\Users\<用户>\Desktop\灵工桌宠.lnk                                       
+T4 注册表卸载项已删除                                True HKCU Uninstall\AzurLaneDeskPet                                        
+T4 产品注册表键已删除                                True HKCU\Software\AzurLaneDeskPet                                         
+T4 无危险目录误删                                  True %TEMP%\alp-danger                          
+T4 报告含 exit=0                               True report 内容校验                                                           
+T4 报告中文未乱码                                  True UTF-8 读取校验                                                            
+T4 报告含统计信息                                  True report 统计段                                                            
+T4 卸载器临时副本已自删                               True 剩余 0 个临时副本                                                            
+T5 安装器 GUI 可启动且可被强杀                         True 3 秒时仍在运行=True，已杀死=True                                                
+T6 用户真实数据目录（%APPDATA%\AzurLaneDeskPet）文件数未变 True 测试前 118 个 → 测试后 118 个（-1 表示目录不存在）                                     
+
+
+通过 32 / 32，失败 0

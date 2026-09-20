@@ -1,0 +1,348 @@
+灵工桌宠 · 自检报告
+时间：2026-09-20 16:41:15
+版本：1.1.0  作者：睡不着のHATSUZUKI
+安装目录：<工程根>\dist\app
+系统：Microsoft Windows NT 6.2.9200.0 / .NET 4.0.30319.42000
+模式：core（core=功能核心 / ui=界面与交互 / all=全部）
+临时目录：%TEMP%\aldeskpet-selftest-20260920-164115-45592-e06b80
+
+== ① 环境与目录 ==
+  [PASS] 数据目录已创建  → %TEMP%\aldeskpet-selftest-20260920-164115-45592-e06b80\data
+  [PASS] 日志目录已创建  → %TEMP%\aldeskpet-selftest-20260920-164115-45592-e06b80\data\logs
+  [PASS] 角色目录已创建  → %TEMP%\aldeskpet-selftest-20260920-164115-45592-e06b80\data\characters
+  [PASS] 安装目录存在  → <工程根>\dist\app
+  [PASS] 日志写入正常  → %TEMP%\aldeskpet-selftest-20260920-164115-45592-e06b80\data\logs\pet-20260920.log
+  [PASS] 临时目录可写  → 写探针文件成功
+
+== ② JSON 读写 ==
+  [PASS] 反序列化得到对象
+  [PASS] 字符串转义正确  → D:\含 空格\目录
+  [PASS] 数组项转义正确
+  [PASS] 绑定回对象  → volume=42
+  [PASS] 换行转义正确  → sk-测试 换行
+  [PASS] 非法 JSON 返回 null
+  [PASS] 空对象/空数组
+
+== ③ 配置保存 / 读取 ==
+  [PASS] 配置文件已生成  → %TEMP%\aldeskpet-selftest-20260920-164115-45592-e06b80\data\config.json
+  [PASS] 重新读取后音量正确  → 66
+  [PASS] 重新读取后权限状态正确  → denied
+  [PASS] 配置写在当前生效的数据目录里  → %TEMP%\aldeskpet-selftest-20260920-164115-45592-e06b80\data\config.json
+  [PASS] 落盘内容不含明文 API Key  → 若失败即表示明文被写进了 config.json
+  [PASS] 落盘 Key 带 dpapi 前缀  → 未找到 dpapi:v1: 前缀
+  [PASS] 加密后内存仍为明文（调用方无感）  → 内存中的 Key 长度 52（不打印内容）
+  [PASS] 重新读取后 Key 能正确解密  → 解密结果与写入前一致（不打印内容）
+  [PASS] 密文本机本用户可解密（功能不受影响）
+  [PASS] Protect 幂等（不二次加密）
+  [PASS] 密文不是明文  → 长度 381
+  [PASS] 含中文与换行的 Key 往返无损
+  [PASS] 损坏的密文安全降级为空串  → 损坏密文未安全降级
+  [PASS] 旧版明文配置可直接读取（向后兼容）
+  [PASS] 空值不被加密也不报错
+  [PASS] 保存配置会留一份备份 config.json.bak  → %TEMP%\aldeskpet-selftest-20260920-164115-45592-e06b80\data\config.json.bak
+  [PASS] 重新读取仍是最新设置  → 77
+  [PASS] config.json 损坏时从备份恢复设置（不会掉回默认值 80）  → volume=77 LoadFailed=False
+  [PASS] 损坏的配置被改名留档（config.json.bad-*）  → 留档文件
+  [PASS] 没有可用备份时标记 LoadFailed（避免静默覆盖用户配置）  → LoadFailed=True
+  [PASS] 保存前把坏文件改名留档  → 留档数 1 → 2
+  [PASS] 新配置已正常写入  → %TEMP%\aldeskpet-selftest-20260920-164115-45592-e06b80\data\config.json
+  [PASS] 环境变量可覆盖默认数据目录（验收沙箱）  → %TEMP%\aldeskpet-env-probe
+  [PASS] 没设环境变量时默认数据目录仍是 %APPDATA%\AzurLaneDeskPet  → C:\Users\<用户>\AppData\Roaming\AzurLaneDeskPet
+
+== ④ 角色库 ==
+  [PASS] 创建角色  → 4fe16d53
+  [PASS] 保存角色
+  [PASS] 重新载入角色  → 信浓
+  [PASS] 台词随角色保存
+  [PASS] 角色出现在列表里  → 共 1 个
+  [PASS] 导入立绘  → aldeskpet-probe.png
+  [PASS] 立绘记录已保存
+  [PASS] 复制角色  → 4fe16d53526f672c
+  [PASS] 副本素材独立且完整
+  [PASS] 删除角色
+  [PASS] 删除后再查不到
+
+== ⑤ 台词解析 / 导入导出 ==
+  [PASS] 问候段解析  → 2
+  [PASS] 点击段解析  → 2
+  [PASS] 系统段解析  → 1
+  [PASS] 权重解析  → 10
+  [PASS] 字号解析  → 22
+  [PASS] 配色解析  → gold
+  [PASS] 加粗解析
+  [PASS] 台词内联语音解析  → 妾身…困了… / v01.mp3
+  [PASS] 未知指令不报错
+  [PASS] 导出的台词可再次导入  → 导出 5 条 → 重新导入 5 条
+  [PASS] 导出内容可读
+  [PASS] 兼容插件 JSON 台词包  → random → 点击 2 条
+  [PASS] 插件 JSON 权重与字号
+  [PASS] 插件 JSON 其它段落兼容  → alert → 主动 1 条
+
+== ⑥ 语音清单 ==
+  [PASS] 清单条目读取  → 有效条目 2
+  [PASS] 缺失文件被剔除  → 缺失 1 个
+  [PASS] 台词→语音匹配  → 匹配 2 条
+  [PASS] 未匹配台词统计  → 未匹配 1 条
+  [PASS] 按文本找到音频文件  → v01.mp3
+  [PASS] 标点差异也能匹配
+  [PASS] 「文件|台词」反向写法
+  [PASS] 无清单时按文件名匹配  → 条目 4
+  [PASS] 可生成清单模板  → 已生成清单模板：  C:\Users\<用户>\AppData\Local\T…
+
+== ⑦ 加权随机抽取 ==
+  [PASS] 权重比例合理  → 高频占比 0.898（期望 ≈0.900）
+  [PASS] 权重<=0 视为 1
+  [PASS] 空池返回 null
+  [PASS] 尽量不连续重复  → 200 次里重复 36 次
+
+== ⑧ 大模型接入（本地 Mock 服务，模拟云端/本地接口） ==
+  [PASS] 请求成功  → 388 ms
+  [PASS] 回复内容解析正确  → 指挥官…你终于回来了…
+  [PASS] 请求体是合法 JSON 且带 model
+  [PASS] 请求头带 Authorization
+  [PASS] system 提示词位于首位
+  [PASS] 携带历史轮数
+  [PASS] 401 被识别为鉴权失败  → 鉴权失败（HTTP 401）：API Key 不对或没有权限。请到「齿轮 → 大模型 API」检查 …
+  [PASS] 空回复被判为失败并给出提示  → 模型返回内容为空。  原始返回：{"choices":[{"message":{…
+  [PASS] 连不上时给出可操作提示  → 无法连接到模型服务：无法连接到远程服务器  请检查：① 网络是否可访问该地址；② 若用本地模型，服务…
+  [PASS] 地址自动补 /chat/completions  → （内部拼接，见下方预设自检）
+  [PASS] 预设包含本地与云端  → 预设 8 个
+  [PASS] 设置克隆互不影响
+  [PASS] markdown 代码块被清理  → 你好
+  [PASS] markdown 列表被拍平成台词  → 第一句 第二句
+  [PASS] 提示词包含角色名与人设
+  [PASS] 提示词包含系统事件上下文
+  [PASS] 提示词包含气泡输出约束
+
+== ⑨ 系统事件监听（需授权） ==
+  [PASS] 监听已启动
+  [PASS] 能取到快照
+  [PASS] 空闲时间可读  → 64 秒
+  [PASS] 上下文提示非空  → 最近 30 分钟，玩家在前台使用过的程序：DeepSeek Harness（2 秒）；当前正在用：DeepSeek Ha…
+  [PASS] 占位符替换生效  → 汝刚刚是在玩 DeepSeek Harness 么…？现在是 16:41。
+  [PASS] 程序友好名映射
+  [PASS] 游戏识别
+  [PASS] 时长格式化
+  [PASS] 监听可停止
+
+== ⑩ 图片：缩放 / 抠图 / 缓存 ==
+  [PASS] 不透明图判定
+  [PASS] 抠图执行成功  → 抠图完成：去除背景像素 32182 个（背景色 RGB 255,255,255）
+  [PASS] 四角变透明
+  [PASS] 主体保留  → 中心 alpha=255
+  [PASS] 抠图后判定为含透明通道
+  [PASS] 透明边被裁掉  → 100×99
+  [PASS] 等比缩放到指定高度  → 101×100
+  [PASS] 图片缓存命中同一对象
+  [PASS] 缩略图生成  → 40×40
+  [PASS] 缓存可清空（内存回收）
+
+== ⑪ 文本排版与 Q 弹动画 ==
+  [PASS] 长文本能折行  → 折成 3 行
+  [PASS] 每行都不超过限定宽度
+  [PASS] 手动换行生效
+  [PASS] 字号映射合理  → 台词 size 22 → 气泡 20px 左右
+  [PASS] 动画曲线起点为 1  → 1.000
+  [PASS] 动画曲线终点为 1  → 1.000
+  [PASS] 有压缩阶段（Q 弹下压）  → 最小压缩系数 0.830
+  [PASS] 有回弹过冲（弹起）  → 最大拉伸系数 1.100
+  [PASS] 压缩幅度安全（不破图）  → 0.830 ~ 1.100
+
+== ⑫ 音频子系统 ==
+  [PASS] 音频子自检返回结果  → MCI 可用（系统 MCI 设备数 5）
+  [PASS] 内置音效预设可用  → press.mp3
+  [PASS] 静音预设返回空
+  [PASS] 播放与停止不抛异常  → 音量 50 测试完成
+
+== ⑬ 内置素材完整性 ==
+  [PASS] 内置素材目录存在  → <工程根>\dist\app\assets\builtin
+  [PASS] 存在：press.mp3  → 3.2 KB
+  [PASS] 存在：release.mp3  → 4.1 KB
+  [PASS] 存在：press-duck.mp3  → 6.2 KB
+  [PASS] 存在：release-duck.mp3  → 2.9 KB
+  [PASS] 存在：dialog-frame.png  → 328.9 KB
+  [PASS] 存在：hex-tile.png  → 7 KB
+  [PASS] 内置角色模板  → 13 个：aika、chuyue、enterprise、jufufu、liino、michele、perlica、prinz_eugen、remielle、shimakaze、shinano、yeshunguang、zhuangfangyi
+  [PASS] 内置角色含 shinano
+  [PASS] 内置角色含 chuyue
+  [PASS] 内置角色含 prinz_eugen
+  [PASS] 内置角色含 shimakaze
+  [PASS] 内置角色含 enterprise
+  [PASS] 内置角色含 michele
+  [PASS] 内置角色含 aika
+  [PASS] 内置角色含 perlica
+  [PASS] 内置角色含 zhuangfangyi
+  [PASS] 内置角色含 liino
+  [PASS] 内置角色含 yeshunguang
+  [PASS] 内置角色含 jufufu
+  [PASS] 内置角色含 remielle
+  [PASS] 内置角色就是这 13 位（没有多余/缺失）  → 实际 13 个：aika、chuyue、enterprise、jufufu、liino、michele、perlica、prinz_eugen、remielle、shimakaze、shinano、yeshunguang、zhuangfangyi
+  [PASS] 模板「aika」台词文件  → 25 条
+  [PASS] 模板「aika」五段台词齐全  → 问候 5 / 点击 9 / 主动 4 / 待机 4 / 系统 3
+  [PASS] 模板「aika」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「aika」角色卡  → 324 个中文字符
+  [PASS] 模板「aika」立绘  → 1.07 MB
+  [PASS] 立绘「aika」体积 ≤1.2MB  → 1093.7 KB
+  [PASS] 立绘「aika」高度 ≤900  → 863×900
+  [PASS] 立绘「aika」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「aika」是彩色的（不是灰度图）  → 最大通道饱和差 189，灰度像素占比 3.9%
+  [PASS] 模板「aika」语音包  → 2 个音频，清单 有
+  [PASS] 模板「chuyue」台词文件  → 61 条
+  [PASS] 模板「chuyue」五段台词齐全  → 问候 10 / 点击 32 / 主动 8 / 待机 6 / 系统 5
+  [PASS] 模板「chuyue」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「chuyue」角色卡  → 460 个中文字符
+  [PASS] 模板「chuyue」立绘  → 1.07 MB
+  [PASS] 立绘「chuyue」体积 ≤1.2MB  → 1094.9 KB
+  [PASS] 立绘「chuyue」高度 ≤900  → 1126×860
+  [PASS] 立绘「chuyue」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「chuyue」是彩色的（不是灰度图）  → 最大通道饱和差 153，灰度像素占比 9.2%
+  [PASS] 模板「chuyue」语音包  → 18 个音频，清单 有
+  [PASS] 模板「enterprise」台词文件  → 61 条
+  [PASS] 模板「enterprise」五段台词齐全  → 问候 9 / 点击 33 / 主动 8 / 待机 6 / 系统 5
+  [PASS] 模板「enterprise」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「enterprise」角色卡  → 400 个中文字符
+  [PASS] 模板「enterprise」立绘  → 1016.7 KB
+  [PASS] 立绘「enterprise」体积 ≤1.2MB  → 1016.7 KB
+  [PASS] 立绘「enterprise」高度 ≤900  → 1003×817
+  [PASS] 立绘「enterprise」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「enterprise」是彩色的（不是灰度图）  → 最大通道饱和差 167，灰度像素占比 12.7%
+  [PASS] 模板「enterprise」语音包  → 18 个音频，清单 有
+  [PASS] 模板「jufufu」台词文件  → 27 条
+  [PASS] 模板「jufufu」五段台词齐全  → 问候 6 / 点击 9 / 主动 5 / 待机 4 / 系统 3
+  [PASS] 模板「jufufu」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「jufufu」角色卡  → 356 个中文字符
+  [PASS] 模板「jufufu」立绘  → 1014.6 KB
+  [PASS] 立绘「jufufu」体积 ≤1.2MB  → 1014.6 KB
+  [PASS] 立绘「jufufu」高度 ≤900  → 868×900
+  [PASS] 立绘「jufufu」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「jufufu」是彩色的（不是灰度图）  → 最大通道饱和差 159，灰度像素占比 4.6%
+  [PASS] 模板「liino」台词文件  → 27 条
+  [PASS] 模板「liino」五段台词齐全  → 问候 6 / 点击 9 / 主动 5 / 待机 4 / 系统 3
+  [PASS] 模板「liino」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「liino」角色卡  → 364 个中文字符
+  [PASS] 模板「liino」立绘  → 1.14 MB
+  [PASS] 立绘「liino」体积 ≤1.2MB  → 1165.4 KB
+  [PASS] 立绘「liino」高度 ≤900  → 1062×900
+  [PASS] 立绘「liino」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「liino」是彩色的（不是灰度图）  → 最大通道饱和差 156，灰度像素占比 1.7%
+  [PASS] 模板「michele」台词文件  → 28 条
+  [PASS] 模板「michele」五段台词齐全  → 问候 6 / 点击 9 / 主动 5 / 待机 4 / 系统 4
+  [PASS] 模板「michele」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「michele」角色卡  → 365 个中文字符
+  [PASS] 模板「michele」立绘  → 836.8 KB
+  [PASS] 立绘「michele」体积 ≤1.2MB  → 836.8 KB
+  [PASS] 立绘「michele」高度 ≤900  → 1033×900
+  [PASS] 立绘「michele」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「michele」是彩色的（不是灰度图）  → 最大通道饱和差 114，灰度像素占比 3.5%
+  [PASS] 模板「michele」语音包  → 2 个音频，清单 有
+  [PASS] 模板「perlica」台词文件  → 27 条
+  [PASS] 模板「perlica」五段台词齐全  → 问候 6 / 点击 9 / 主动 5 / 待机 4 / 系统 3
+  [PASS] 模板「perlica」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「perlica」角色卡  → 390 个中文字符
+  [PASS] 模板「perlica」立绘  → 1.01 MB
+  [PASS] 立绘「perlica」体积 ≤1.2MB  → 1035.2 KB
+  [PASS] 立绘「perlica」高度 ≤900  → 1030×900
+  [PASS] 立绘「perlica」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「perlica」是彩色的（不是灰度图）  → 最大通道饱和差 144，灰度像素占比 5.3%
+  [PASS] 模板「perlica」语音包  → 1 个音频，清单 有
+  [PASS] 模板「prinz_eugen」台词文件  → 61 条
+  [PASS] 模板「prinz_eugen」五段台词齐全  → 问候 9 / 点击 33 / 主动 8 / 待机 6 / 系统 5
+  [PASS] 模板「prinz_eugen」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「prinz_eugen」角色卡  → 402 个中文字符
+  [PASS] 模板「prinz_eugen」立绘  → 897.8 KB
+  [PASS] 立绘「prinz_eugen」体积 ≤1.2MB  → 897.8 KB
+  [PASS] 立绘「prinz_eugen」高度 ≤900  → 1272×900
+  [PASS] 立绘「prinz_eugen」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「prinz_eugen」是彩色的（不是灰度图）  → 最大通道饱和差 178，灰度像素占比 9.3%
+  [PASS] 模板「prinz_eugen」语音包  → 18 个音频，清单 有
+  [PASS] 模板「remielle」台词文件  → 27 条
+  [PASS] 模板「remielle」五段台词齐全  → 问候 6 / 点击 9 / 主动 5 / 待机 4 / 系统 3
+  [PASS] 模板「remielle」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「remielle」角色卡  → 394 个中文字符
+  [PASS] 模板「remielle」立绘  → 919.4 KB
+  [PASS] 立绘「remielle」体积 ≤1.2MB  → 919.4 KB
+  [PASS] 立绘「remielle」高度 ≤900  → 875×900
+  [PASS] 立绘「remielle」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「remielle」是彩色的（不是灰度图）  → 最大通道饱和差 154，灰度像素占比 1.9%
+  [PASS] 模板「shimakaze」台词文件  → 61 条
+  [PASS] 模板「shimakaze」五段台词齐全  → 问候 9 / 点击 33 / 主动 8 / 待机 6 / 系统 5
+  [PASS] 模板「shimakaze」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「shimakaze」角色卡  → 365 个中文字符
+  [PASS] 模板「shimakaze」立绘  → 846.6 KB
+  [PASS] 立绘「shimakaze」体积 ≤1.2MB  → 846.6 KB
+  [PASS] 立绘「shimakaze」高度 ≤900  → 820×900
+  [PASS] 立绘「shimakaze」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「shimakaze」是彩色的（不是灰度图）  → 最大通道饱和差 210，灰度像素占比 13.0%
+  [PASS] 模板「shimakaze」语音包  → 18 个音频，清单 有
+  [PASS] 模板「shinano」台词文件  → 45 条
+  [PASS] 模板「shinano」五段台词齐全  → 问候 10 / 点击 16 / 主动 8 / 待机 6 / 系统 5
+  [PASS] 模板「shinano」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「shinano」角色卡  → 372 个中文字符
+  [PASS] 模板「shinano」立绘  → 911.9 KB
+  [PASS] 立绘「shinano」体积 ≤1.2MB  → 911.9 KB
+  [PASS] 立绘「shinano」高度 ≤900  → 917×886
+  [PASS] 立绘「shinano」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「shinano」是彩色的（不是灰度图）  → 最大通道饱和差 114，灰度像素占比 6.9%
+  [PASS] 模板「shinano」语音包  → 16 个音频，清单 有
+  [PASS] 模板「yeshunguang」台词文件  → 27 条
+  [PASS] 模板「yeshunguang」五段台词齐全  → 问候 6 / 点击 9 / 主动 5 / 待机 4 / 系统 3
+  [PASS] 模板「yeshunguang」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「yeshunguang」角色卡  → 346 个中文字符
+  [PASS] 模板「yeshunguang」立绘  → 853.1 KB
+  [PASS] 立绘「yeshunguang」体积 ≤1.2MB  → 853.1 KB
+  [PASS] 立绘「yeshunguang」高度 ≤900  → 951×900
+  [PASS] 立绘「yeshunguang」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「yeshunguang」是彩色的（不是灰度图）  → 最大通道饱和差 174，灰度像素占比 5.0%
+  [PASS] 模板「zhuangfangyi」台词文件  → 27 条
+  [PASS] 模板「zhuangfangyi」五段台词齐全  → 问候 6 / 点击 9 / 主动 5 / 待机 4 / 系统 3
+  [PASS] 模板「zhuangfangyi」含必含句（你好 / 你终于回来了 / 你怎么不理我）  → 你好=True 回来了=True 不理我=True
+  [PASS] 模板「zhuangfangyi」角色卡  → 371 个中文字符
+  [PASS] 模板「zhuangfangyi」立绘  → 1.07 MB
+  [PASS] 立绘「zhuangfangyi」体积 ≤1.2MB  → 1096.6 KB
+  [PASS] 立绘「zhuangfangyi」高度 ≤900  → 856×900
+  [PASS] 立绘「zhuangfangyi」是透明底（左上/右上/左下角透明）  → 角 alpha=0/0/0
+  [PASS] 立绘「zhuangfangyi」是彩色的（不是灰度图）  → 最大通道饱和差 151，灰度像素占比 16.4%
+  [PASS] 模板「zhuangfangyi」语音包  → 1 个音频，清单 有
+  [PASS] 导入内置模板  → 自检-aika
+  [PASS] 模板带立绘  → 1 张
+  [PASS] 模板带台词  → 25 条
+  [PASS] 模板带角色卡  → 【角色设定】 你扮演的是一位高中生英雄：白天是追潮流、玩乐队的学生，夜里戴上火焰…
+  [PASS] 模板语音清单一套可用  → 语音清单：manifest.txt · 条目 2 · 已匹配台词 1/25
+  [PASS] 导入内置模板会记下来源模板 id  → builtinId=aika
+  [PASS] 来源模板 id 随 profile.json 往返  → builtinId=aika
+  [PASS] 用户自建角色的来源模板 id 为空（不会被误判成内置）
+
+== ⑲ 桌宠显示策略（始终最上层 / 焦点冻结 / 全屏隐藏） ==
+  [PASS] 显示方式默认是「始终最上层」
+  [PASS] 三种显示方式都被接受
+  [PASS] 非法 / 大小写 / 空格都能收敛
+  [PASS] 显示方式 id 与索引一一对应
+  [PASS] 三种显示方式都有界面标题与说明  → 其他应用获得焦点时冻结
+  [PASS] 「始终最上层 + 不隐藏全屏」完全不轮询（零开销）
+  [PASS] 打开全屏自动隐藏就需要轮询
+  [PASS] 冻结 / 全屏隐藏模式需要轮询
+  [PASS] 桌面在前台：三种模式都正常显示
+  [PASS] 桌宠自己在前台：不会自己把自己冻结
+  [PASS] 取不到前台窗口时正常显示
+  [PASS] 始终最上层：别的程序窗口在前台也不让位（普通窗口不会被误判成全屏）
+  [PASS] 始终最上层 + 全屏自动隐藏：全屏时进后台
+  [PASS] 始终最上层 + 关掉全屏隐藏：全屏时也不动
+  [PASS] 焦点冻结：别的程序在前台就冻结（沉到最底层）
+  [PASS] 焦点冻结 + 全屏自动隐藏：全屏时直接进后台
+  [PASS] 焦点冻结 + 关掉全屏隐藏：全屏时只是冻结
+  [PASS] 全屏隐藏模式：普通窗口在前台时仍然最上层
+  [PASS] 全屏隐藏模式：别的程序全屏就进后台
+  [PASS] 全屏窗口在别的显示器上时不收桌宠（多屏）
+  [PASS] 刚好盖满显示器算全屏
+  [PASS] 比显示器还大也算全屏
+  [PASS] 最大化窗口（工作区）不算全屏
+  [PASS] 没盖满 / 差一点 / 错位都不算全屏
+  [PASS] 看得到窗口矩形时按矩形判断同屏
+  [PASS] 同屏判定：设备名一致算同屏
+  [PASS] 同屏判定：设备名不同算别的屏
+  [PASS] 同屏判定：拿不到设备名时退回矩形比对
+  [PASS] 同屏判定：前台不是全屏就一定不同屏
+
+================ 结果 ================
+通过 309 项，失败 0 项，用时 5.7 秒
+结论：全部通过 ✔

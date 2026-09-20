@@ -1,0 +1,131 @@
+灵工桌宠 · 最终成品端到端验收
+时间：2026-09-20 16:43:36
+被测安装包：<工程根>\dist\灵工桌宠-安装程序.exe
+
+===== F1 安装程序产物 =====
+[PASS] F1 安装程序存在且是 PE :: 23,894,528 bytes
+[PASS] F1 版本号 = 1.1.0 :: FileVersion=1.1.0.0
+[PASS] F1 发布者 = 睡不着のHATSUZUKI :: CompanyName=睡不着のHATSUZUKI
+
+===== F2 装进共用文件夹（不得动无关文件） =====
+[PASS] F2 静默安装退出码 0 :: exit=0
+[PASS] F2 无关文件未被改动（我的资料.txt） :: 安装阶段不得动无关文件
+[PASS] F2 无关文件未被改动（other\keep.dat） :: 安装阶段不得动无关文件
+
+===== F2b 覆盖升级（旧版残留必须清掉、清单外文件必须留下） =====
+[PASS] F2b 覆盖升级退出码 0 :: exit=0
+[PASS] F2b 报告写了升级清理统计 :: 升级清理：删除上一版残留 7 项，保留（非本产品 / 非空目录）0 项，跳过（重解析点 / 越界 / 缺失）0 项
+[PASS] F2b 上一版已移除的角色目录被清掉（武藏） :: musashi gone
+[PASS] F2b 上一版已移除的角色目录被清掉（新泽西） :: newjersey gone
+[PASS] F2b 上一版遗留的旧文件被清掉 :: legacy-sub\old-file.dll gone
+[PASS] F2b 本版负载里的文件已用新版覆盖 :: 新主程序在位
+[PASS] F2b 新旧都有的文件被新版覆盖（使用说明.txt） :: 不是那份 12 字节的 stale 文件
+[PASS] F2b 新旧都有的文件被新版覆盖（素材清单.md） :: 不是那份 10 字节的 stale 文件
+[PASS] F2b 清单外的用户文件仍在（根目录） :: not ours → 保留
+[PASS] F2b 清单外的用户文件仍在（子目录） :: not ours → 保留
+[PASS] F2b 非空目录未被删除 :: legacy-sub 目录保留
+[PASS] F2b 升级后的安装自检全通过 :: 通过 309 项，失败 0 项
+[PASS] F2b 升级后内置角色恰好 13 位 :: 自检断言
+[PASS] F2b 升级后卸载清场干净 :: 见下方 F8 同类断言（此目录由本次清理单独卸载）
+[PASS] F2b 升级目录卸载退出码 0 :: exit=0
+[PASS] F2b 升级目录卸载 CLEAN=OK :: CLEAN=OK
+[PASS] F2b 卸载后清单外用户文件仍在 :: 安全策略
+
+===== F3 安装内容与 13 位内置角色 =====
+[PASS] F3 主程序已就位 :: %TEMP%\alp-final\AzurLaneDeskPet.exe
+[PASS] F3 卸载器已就位 :: 安装目录内
+[PASS] F3 使用说明.txt 已就位 :: 安装目录内
+[PASS] F3 安装清单 files.json :: 卸载白名单
+[PASS] F3 安装标记 .azurlandeskpet-install :: 安全标记
+      安装文件总数：179
+[PASS] F3 内置角色 信浓（shinano）开箱可用 :: 立绘 2 张 / 台词 45 条 / 角色卡 True / 语音 16 条 + 清单 True
+[PASS] F3 内置角色 初月（chuyue）开箱可用 :: 立绘 1 张 / 台词 61 条 / 角色卡 True / 语音 18 条 + 清单 True
+[PASS] F3 内置角色 欧根亲王（prinz_eugen）开箱可用 :: 立绘 1 张 / 台词 61 条 / 角色卡 True / 语音 18 条 + 清单 True
+[PASS] F3 内置角色 岛风（shimakaze）开箱可用 :: 立绘 1 张 / 台词 61 条 / 角色卡 True / 语音 18 条 + 清单 True
+[PASS] F3 内置角色 企业（enterprise）开箱可用 :: 立绘 2 张 / 台词 61 条 / 角色卡 True / 语音 18 条 + 清单 True
+[PASS] F3 内置角色 米雪儿（michele）开箱可用 :: 立绘 1 张 / 台词 28 条 / 角色卡 True / 语音 2 条 + 清单 True
+[PASS] F3 内置角色 艾卡（aika）开箱可用 :: 立绘 1 张 / 台词 25 条 / 角色卡 True / 语音 2 条 + 清单 True
+[PASS] F3 内置角色 佩丽卡（perlica）开箱可用 :: 立绘 1 张 / 台词 27 条 / 角色卡 True / 语音 1 条 + 清单 True
+[PASS] F3 内置角色 庄方宜（zhuangfangyi）开箱可用 :: 立绘 1 张 / 台词 27 条 / 角色卡 True / 语音 1 条 + 清单 True
+[PASS] F3 内置角色 梨诺（liino）开箱可用 :: 立绘 1 张 / 台词 27 条 / 角色卡 True / 语音 0 条 + 清单 False
+[PASS] F3 内置角色 叶瞬光（yeshunguang）开箱可用 :: 立绘 1 张 / 台词 27 条 / 角色卡 True / 语音 0 条 + 清单 False
+[PASS] F3 内置角色 橘福福（jufufu）开箱可用 :: 立绘 1 张 / 台词 27 条 / 角色卡 True / 语音 0 条 + 清单 False
+[PASS] F3 内置角色 蕾米埃尔（remielle）开箱可用 :: 立绘 1 张 / 台词 27 条 / 角色卡 True / 语音 0 条 + 清单 False
+
+===== F6b 首次运行：角色列表自动补齐 13 位内置角色 =====
+[PASS] F6b 首次运行后角色列表里就有 13 位 :: 实际 13 位：4f014e1a、4f694e3d5361、4fe16d53、521d6708、53f677ac5149、5c9b98ce、5e8465b95b9c、68a88bfa、6a58798f798f、6b2768394eb2738b、7c7396ea513f、827e5361、857e7c7357c35c14
+[PASS] F6b 每位都带立绘 / 来源模板标记（语音按是否提供） :: 企业 / 佩丽卡 / 信浓 / 初月 / 叶瞬光 / 岛风 / 庄方宜 / 梨诺 / 橘福福 / 欧根亲王 / 米雪儿 / 艾卡 / 蕾米埃尔
+[PASS] F6b 五位齐全（信浓/初月/欧根亲王/岛风/企业） :: 全部在位
+[PASS] F6b 补齐标记已置位（不会重复导入 / 不会补回已删除的角色） :: builtinSeed=1
+[PASS] F4 自检退出码 0 :: exit=0
+[PASS] F4 自检全部通过 :: 通过 309 项 / 失败 0 项
+[PASS] F4 Key 加密回归：落盘内容不含明文 API Key :: 自检报告断言
+[PASS] F4 Key 加密回归：落盘 Key 带 dpapi 前缀 :: 自检报告断言
+[PASS] F4 Key 加密回归：重新读取后 Key 能正确解密 :: 自检报告断言
+[PASS] F4 Key 加密回归：损坏的密文安全降级为空串 :: 自检报告断言
+[PASS] F4 Key 加密回归：旧版明文配置可直接读取 :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色就是这 13 位 :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 shinano :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 chuyue :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 prinz_eugen :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 shimakaze :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 enterprise :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 michele :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 aika :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 perlica :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 zhuangfangyi :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 liino :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 yeshunguang :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 jufufu :: 自检报告断言
+[PASS] F4 内置角色断言：内置角色含 remielle :: 自检报告断言
+[PASS] F4 自检报告不含明文 Key :: （自检用的假 Key 不应出现在报告里）
+
+===== F5 版本与创作者标识 =====
+[PASS] F5 --version 输出 v1.1.0 :: 灵工桌宠 v1.1.0 · 睡不着のHATSUZUKI
+[PASS] F5 --version 输出创作者名 :: 睡不着のHATSUZUKI
+
+===== F6 开箱即用：13 位内置角色逐个导入 =====
+[PASS] F6 导入内置角色 信浓 :: exit=0
+[PASS] F6 导入内置角色 初月 :: exit=0
+[PASS] F6 导入内置角色 欧根亲王 :: exit=0
+[PASS] F6 导入内置角色 岛风 :: exit=0
+[PASS] F6 导入内置角色 企业 :: exit=0
+[PASS] F6 导入内置角色 米雪儿 :: exit=0
+[PASS] F6 导入内置角色 艾卡 :: exit=0
+[PASS] F6 导入内置角色 佩丽卡 :: exit=0
+[PASS] F6 导入内置角色 庄方宜 :: exit=0
+[PASS] F6 导入内置角色 梨诺 :: exit=0
+[PASS] F6 导入内置角色 叶瞬光 :: exit=0
+[PASS] F6 导入内置角色 橘福福 :: exit=0
+[PASS] F6 导入内置角色 蕾米埃尔 :: exit=0
+[PASS] F6 数据目录里有 13 个角色 :: 实际 13 个：4f014e1a、4f694e3d5361、4fe16d53、521d6708、53f677ac5149、5c9b98ce、5e8465b95b9c、68a88bfa、6a58798f798f、6b2768394eb2738b、7c7396ea513f、827e5361、857e7c7357c35c14
+[PASS] F6 每个角色的立绘 / 角色设置都在（语音按是否提供） :: 导入后即可直接开桌宠
+
+===== F7 实机运行（--autostart） =====
+[PASS] F7 桌宠进程存活 :: pid=42368
+[PASS] F7 窗口标题正确 :: 标题=[灵工桌宠 · 信浓 | ActiveMovie Window | 灵工桌宠 · v1.1.0 | GDI+ Window (AzurLaneDeskPet.exe) | .NET-BroadcastEventWindow.4.0.0.0.2bf8098.0 | MSCTFIME UI | Default IME | Default IME | Default IME]
+[PASS] F7 语音清单已加载到运行日志 :: 语音清单：manifest.txt · 条目 16 · 已匹配台词 16/45
+[PASS] F7 桌宠进程可正常退出 :: 已终止
+
+===== F8 静默卸载与清场 =====
+[PASS] F8 卸载退出码 0 :: exit=0
+[PASS] F8 报告含 RESULT: :: 收尾标记
+[PASS] F8 CLEAN=OK（未能删除 0 项） :: CLEAN=OK
+[PASS] F8 安装目录里的产品文件已删除 :: 主程序 gone
+[PASS] F8 无关文件「我的资料.txt」仍在 :: 安全策略
+[PASS] F8 无关文件「other\keep.dat」仍在 :: 安全策略
+[PASS] F8 共用文件夹本身未被删除 :: %TEMP%\alp-final
+[PASS] F8 安装目录内清单文件已清 :: files.json gone
+[PASS] F8 注册表卸载项已删除 :: HKCU Uninstall
+[PASS] F8 数据目录保留了本次测试前就存在的内容 :: （安装前已有数据目录，按策略只删本产品条目）
+[PASS] F8 未生成任何延迟删除脚本 :: 拒绝/正常路径都不得留脚本
+
+===== F9 清场 =====
+[PASS] F9 用户真实数据目录（%APPDATA%\AzurLaneDeskPet）未被触碰（文件数未变） :: 验收前 118 个文件 → 验收后 118 个（-1 表示目录不存在）
+[PASS] F9 无残留桌宠进程 :: 残留 0 个
+[PASS] F9 无残留卸载器临时副本 :: 残留 0 个
+[PASS] F9 测试目录已清理 :: alp-final / alp-final-out
+
+===== 汇总 =====
+通过 103 / 103，失败 0
+结论：全部通过 ✔
